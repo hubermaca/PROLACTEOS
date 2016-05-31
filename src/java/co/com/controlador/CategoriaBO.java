@@ -5,7 +5,7 @@ import co.com.entidades.Categoria;
 import co.com.modelo.CategoriaDaoJpa;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
+//mensaje prueba
 /**
  *
  * @author jj
