@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PlproductoCreateDlg" widgetVar="PlproductoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePlproductoTitle}">
+            <h:form id="PlproductoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{plproductoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePlproductoLabel_idProducto}" for="idProducto" />
+                        <p:inputText id="idProducto" value="#{plproductoController.selected.idProducto}" title="#{bundle.CreatePlproductoTitle_idProducto}" required="true" requiredMessage="#{bundle.CreatePlproductoRequiredMessage_idProducto}"/>
+                        <p:outputLabel value="#{bundle.CreatePlproductoLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{plproductoController.selected.nombre}" title="#{bundle.CreatePlproductoTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.CreatePlproductoLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{plproductoController.selected.descripcion}" title="#{bundle.CreatePlproductoTitle_descripcion}" />
+                        <p:outputLabel value="#{bundle.CreatePlproductoLabel_precio}" for="precio" />
+                        <p:inputText id="precio" value="#{plproductoController.selected.precio}" title="#{bundle.CreatePlproductoTitle_precio}" />
+                        <p:outputLabel value="#{bundle.CreatePlproductoLabel_fechaVencimiento}" for="fechaVencimiento" />
+                        <p:calendar id="fechaVencimiento" pattern="MM/dd/yyyy HH:mm:ss" value="#{plproductoController.selected.fechaVencimiento}" title="#{bundle.EditPlproductoTitle_fechaVencimiento}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreatePlproductoLabel_codigo}" for="codigo" />
+                        <p:inputText id="codigo" value="#{plproductoController.selected.codigo}" title="#{bundle.CreatePlproductoTitle_codigo}" />
+                        <p:outputLabel value="#{bundle.CreatePlproductoLabel_idCategoria}" for="idCategoria" />
+                        <p:selectOneMenu id="idCategoria" value="#{plproductoController.selected.idCategoria}" >
+                            <f:selectItems value="#{plcategoriaController.itemsAvailableSelectOne}"
+                                           var="idCategoriaItem"
+                                           itemValue="#{idCategoriaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{plproductoController.create}" value="#{bundle.Save}" update="display,:PlproductoListForm:datalist,:growl" oncomplete="handleSubmit(args,'PlproductoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PlproductoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <title><ui:insert name="title"> INICIAR SESION </ui:insert></title>
+            <link rel="shortcut icon" href="#{request.contextPath}/recursos/logoColdigital.ico" />
+            <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/estilos.css" ></link>
+        </h:head>
+        <h:body>
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north">
+                    <div class="ui-grid ui-grid-responsive">
+                        <div class="ui-grid-row">
+                            <div class="ui-grid-col-4" align="left">
+                                <p:graphicImage value="/recursos/logoColdigitalFondoBlanco.jpg" />
+                            </div>
+                            <div class="ui-grid-col-4" align="center">
+                                <p:outputLabel id="textoTitulo" value="MI PROYECTO WEB" />
+                            </div>
+                            <div class="ui-grid-col-4" align="right">
+                                <p:graphicImage value="/recursos/logoColdigitalFondoBlanco.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                </p:layoutUnit>
+                <p:layoutUnit position="center">
+                    <div class="ui-grid ui-grid-responsive">
+                        <div id="filaLogin" class="ui-grid-row">
+                            <div class="ui-grid-col-12" align="center">
+                                <h:form>
+                                    <p:growl id="mensajes" life="2000" />
+
+                                    <p:panelGrid columns="3" >
+                                        <f:facet name="header">
+                                            Ingresar al sistema
+                                        </f:facet>
+
+                                        <p:outputLabel for="txtLogin" value="Login:" />
+                                        <p:inputText id="txtLogin" value="#{usuario.login}" required="true" requiredMessage="Login es requerido" />
+                                        <p:tooltip for="txtLogin" showEvent="focus" hideEvent="blur" value="Usuario de ingreso al sistema" />
+
+                                        <p:outputLabel for="txtPassword" value="Password:" />
+                                        <p:password id="txtPassword" value="#{usuario.password}" feedback="true" required="true" requiredMessage="Password es requerido" />
+                                        <p:tooltip for="txtPassword" showEvent="focus" hideEvent="blur" value="" />
+
+                                        <p:outputLabel value="Opciones: " />
+                                        <p:panelGrid columns="2">
+                                            <p:commandButton id="btnAcceder" image="ui-icon-key" action="#{usuario.validarUsuario()}" value="Acceder" update="mensajes" />
+                                            <p:commandButton id="btnRegistrarse" image="ui-icon-circle-close" action="registroUsuario.xhtml" value="Registrarse" update="mensajes" />
+                                        </p:panelGrid>
+
+                                    </p:panelGrid>            
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </p:layoutUnit>
+                <p:layoutUnit position="south">
+                    <div class="ui-grid ui-grid-responsive">
+                        <div class="ui-grid-row">
+                            <div class="ui-grid-col-12" align="center">
+                                <p:graphicImage value="/recursos/imgColombia.png" width="25" height="20" />
+                                &nbsp;
+                                <p:outputLabel value="57" />
+                                &nbsp;&nbsp;&nbsp;
+                                <p:graphicImage value="/recursos/imgTelefono.png" width="20" height="20" />
+                                &nbsp;
+                                <p:outputLabel value="333 444 5555 - 315 000 2256" />
+                                <br />
+                                <p:outputLabel value="&copy; Copyright 2016 MiProyectoWeb, " />
+                                <p:graphicImage value="/recursos/logoColdigital.ico" />
+                                <p:outputLabel value="info@coldigital.com.co" />
+                            </div>
+                        </div>
+                    </div>
+                </p:layoutUnit>
+            </p:layout>
+        </h:body>
+    </f:view>
+</html>
+
