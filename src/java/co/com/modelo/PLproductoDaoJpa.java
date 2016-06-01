@@ -10,7 +10,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 //Import de entidad a persistir
-
 import co.com.entidades.Plproducto;
 import java.util.List;
 import javax.persistence.EntityTransaction;
@@ -21,30 +20,28 @@ import javax.persistence.Query;
  * @author jj
  */
 public class PLproductoDaoJpa {
-    
-    
+
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("PROLACTEOSPU");
     EntityManager em = emf.createEntityManager();
-    public void crearProducto(Plproducto p ){
-           EntityTransaction transaction = em.getTransaction();
-           transaction.begin();
-           
-            if(!em.getTransaction().isActive())
-               em.getTransaction().begin();
-                  em.persist(p);
-                    transaction.commit();        
+
+    public void crearProducto(Plproducto p) {
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+
+        if (!em.getTransaction().isActive()) {
+            em.getTransaction().begin();
         }
-    
-    
-    	public List listAll() {
+        em.persist(p);
+        transaction.commit();
+    }
 
-		String jpql = "Select a from " + Plproducto.class.getName() + " a";
-		Query result = em.createQuery(jpql, Plproducto.class);
-		List productosList = result.getResultList();
+    public List listAll() {
 
-		return productosList;
-	}
+        String jpql = "Select a from " + Plproducto.class.getName() + " a";
+        Query result = em.createQuery(jpql, Plproducto.class);
+        List productosList = result.getResultList();
 
-    
-    
+        return productosList;
+    }
+
 }

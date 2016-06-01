@@ -43,8 +43,8 @@ import javax.xml.bind.annotation.XmlTransient;
     private static final long serialVersionUID = 1L;
    
     @Id
-    @SequenceGenerator(name = "categoria_seq",sequenceName="categoria_seq", allocationSize=1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "categoria_seq")
+    @SequenceGenerator(name = "CATEGORIA_SEQ",sequenceName="CATEGORIA_SEQ", allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.AUTO,generator = "CATEGORIA_SEQ")
     
     @Basic(optional = false)
     @NotNull

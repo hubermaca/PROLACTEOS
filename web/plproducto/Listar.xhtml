@@ -18,7 +18,7 @@
      <ui:define name="body">
 	<h:form id="form">            
             <p:growl id="msgs" showDetail="true"/>
-              <p:panel header="GESTIONAR PRODUCTO" id="panelAdd">
+              <p:panel header="Gestionar Productos" id="panelAdd">
                 <p:dataTable  id="datalist" value="#{productoBO.productosList}" var="item"
                       selectionMode="single"		
                       selection="#{productoBO.seleccionarProducto}"
@@ -27,8 +27,7 @@
                       rows="5"
                       rowsPerPageTemplate="10,20,30,40,50"
                       >
-
-                            <p:ajax event="rowSelect" listener="#{productoBO.onRowSelect}"  update=":form:msgs" />/>
+                                      <p:ajax event="rowSelect" listener="#{productoBO.onRowSelect}"  update=":form:msgs" />/>
                             <p:ajax event="rowUnselect" listener="#{productoBO.onRowUnselect}" update=":form:msgs" />
                                     <p:column filterBy="#{item.codigo}" 
 					   filterMatchMode="contains"  headerText="identificador producto">
@@ -61,17 +60,14 @@
 						</f:facet>
 						<h:outputText value="#{item.precio}" />
 					</p:column>
-                            <p:column >
-                                <f:facet name="header">
-                                    <p:outputLabel value="fecha de vencimiento"/>
-                                                                                           
-                                    <h:outputText value="#{item.fechaVencimiento}" />
-                                    
-                                </f:facet>
-                                
-                                
-                                
-                            </p:column>
+                           
+                            <p:column filterBy="#{item.fechaVencimiento}"
+						filterMatchMode="contains" headerText="fecha">
+						<f:facet name="header">
+							<h:outputLabel value="fecha2" />
+						</f:facet>
+                                <h:outputText value="#{item.fechaVencimiento}" />
+					</p:column>
                             
                             
                             <f:facet name="footer" >
@@ -81,6 +77,8 @@
                                     oncomplete="PF('dialogoProducto').show()"
                                     icon="fa fa-plus-square" title="Agregar productor" />
                        
+
+
                             </f:facet>
 			</p:dataTable>
         	</p:panel>

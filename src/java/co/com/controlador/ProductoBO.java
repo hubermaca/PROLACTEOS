@@ -2,12 +2,14 @@ package co.com.controlador;
 
 import co.com.entidades.Plproducto;
 import co.com.modelo.PLproductoDaoJpa;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javafx.css.StyleOrigin;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
@@ -45,6 +47,9 @@ private void init(){
     
     
     public String agregarProductos(){
+        
+        
+        System.out.print("ENTRO METODO AGREGAR......");
         plproductoDaoJpa.crearProducto(plproducto);
         init();
 //       EntityConverter.ejecutarUpdate(EntityConverter.buscarHtmlComponete("incluirProducto").getClientId());
@@ -65,7 +70,24 @@ private void init(){
         FacesContext.getCurrentInstance().addMessage(null, msg);
             }
      
+      
+      
+//      Metodo para dar formato a las fechas
+      
+      
+       public void onDateSelect(SelectEvent event) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
+    }
      
+       
+         public void click() {
+        RequestContext requestContext = RequestContext.getCurrentInstance();
+         
+        requestContext.update("form:display");
+        requestContext.execute("PF('dlg').show()");
+    }
     
     
 //    metodos set y get

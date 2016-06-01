@@ -47,7 +47,7 @@ public class Plproducto implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @SequenceGenerator(name="PLPRODUCTO2_SEQ", sequenceName="PLPRODUCTO2_SEQ", allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PLPRODUCTO2_SEQ")
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="PLPRODUCTO2_SEQ")
     @Basic(optional = false)
     @NotNull
  

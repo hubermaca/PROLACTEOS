@@ -2,48 +2,49 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-     
-      <ui:composition> 
-    
-    <p:dialog id="dialogoProducto" widgetVar="dialogoProducto" modal="true" resizable="false" appendTo="@(body)" header="Crear productos">
-	<h:form id="formularioProductos">
-            <h:panelGroup id="display">
-		<p:panelGrid columns="9"  id="Inventario">
-			<p:outputLabel value="Nombre *" styleClass="campoRequerido" />
-                        <p:inputText value="#{productoBO.plproducto.nombre}"
-			id="Incluir_Producto" required="true"
-					requiredMessage="Campo obligatorio"></p:inputText>
-			<p:message for="Incluir_Producto" id="msjTipoSol1" />
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-			<p:outputLabel value="DescripciÃ³n *" styleClass="campoRequerido" />
-                        <p:inputText value="#{productoBO.plproducto.descripcion}"
-					id="Incluir_Producto1" required="true"
-					requiredMessage="Campo obligatorio"></p:inputText>
-			<p:message for="Incluir_Producto1" id="msjT1ipoSol" />
-				
-			<p:outputLabel value="Cantidad *" styleClass="campoRequerido" />
-			<p:outputLabel value="Precio *" styleClass="campoRequerido" />
+    <ui:composition> 
+
+        <p:dialog id="dialogoProducto" widgetVar="dialogoProducto" modal="true" resizable="false" appendTo="@(body)" header="Crear productos">
+            <h:form id="formularioProductos">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2"  id="Inventario">
+                       
+                          <p:outputLabel value="Código" styleClass="campoRequerido" />
                         <p:inputText value="#{productoBO.plproducto.precio}"
-					id="Incluir_Producto14" required="true"
-					requiredMessage="Campo obligatorio"></p:inputText>
-				<p:message for="Incluir_Producto14"  />
-				
-			<p:outputLabel value="Iva %*" styleClass="campoRequerido" />
-                         
-                  </p:panelGrid>
-                    <h:commandButton actionListener="#{productoBO.agregarProductos()}"
-                                    image="images/Iconos/guardar.png"></h:commandButton>
-					
+                                     id="Incluir_Producto14" required="true"
+                                     requiredMessage="Campo obligatorio"></p:inputText>
+                        
+                        <p:outputLabel value="Nombre *" styleClass="campoRequerido" />
+                        <p:inputText value="#{productoBO.plproducto.nombre}"
+                                     id="Incluir_Producto" required="true"
+                                     requiredMessage="Campo obligatorio"></p:inputText>
+                        <p:outputLabel value="DescripciÃ³n *" styleClass="campoRequerido" />
+                        <p:inputText value="#{productoBO.plproducto.descripcion}"
+                                     id="Incluir_Producto1" required="true"
+                                     requiredMessage="Campo obligatorio"></p:inputText>		
+                      
 
-		
+                 
+                        <p:outputLabel value="Fecha de Vencimiento *" styleClass="campoRequerido" />
+                        <p:calendar value="#{productoBO.plproducto.fechaVencimiento}"
+                                    id="Incluir_Producto15" required="true"
+                                    requiredMessage="Campo obligatorio"></p:calendar>
+
+                    </p:panelGrid>
+                    <h:commandButton actionListener="#{productoBO.agregarProductos()}"
+                                     image="images/Iconos/guardar.png"></h:commandButton>
+
+
+
                 </h:panelGroup>
-            
-	</h:form>
+
+            </h:form>
         </p:dialog>
-      </ui:composition>
+    </ui:composition>
 </html>
 

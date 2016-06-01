@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:outputStylesheet name="webjars/font-awesome/4.4.0/css/font-awesome.css"/>
+
+    <ui:composition template="/template.xhtml">
+
+
+
+        <ui:define name="title">
+            <h:outputText value="Lista de Categorias"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="form">            
+                <p:growl id="msgs" showDetail="true"/>
+                <p:panel header="Gestionar Categorias" id="panelAdd">
+                    <p:dataTable  id="datalist" value="#{categoriaBO.listCategorias}" var="item"
+                                  selectionMode="single"		
+                                  selection="#{categoriaBO.seleccionarCategoria}"
+                                  paginator="true"
+                                  rowKey="#{item.idCategoria}"
+                                  rows="5"
+                                  rowsPerPageTemplate="10,20,30,40,50"
+                                  >
+                        <p:ajax event="rowSelect" listener="#{productoBO.onRowSelect}"  update=":form:msgs" />/>
+                        <p:ajax event="rowUnselect" listener="#{productoBO.onRowUnselect}" update=":form:msgs" />
+                        <p:column filterBy="#{item.codigoCategoria}" 
+                                  filterMatchMode="contains"  headerText="identificador producto">
+                            <f:facet name="header">
+                                <h:outputLabel value="Codigo" />
+                            </f:facet>
+                            <h:outputText value="#{item.codigoCategoria}" />
+                        </p:column>
+
+                        <p:column filterBy="#{item.nombre}"
+                                  filterMatchMode="contains" headerText="nombre producto">
+                            <f:facet name="header">
+                                <h:outputLabel value="Nombre" />
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}" />
+                        </p:column>
+
+                        <p:column filterBy="#{item.descripcion}"
+                                  filterMatchMode="contains" headerText="descripcion producto">
+                            <f:facet name="header">
+                                <h:outputLabel value="Descripción" />
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}" />
+                        </p:column>
+
+                        <f:facet name="footer" >
+
+                            <p:commandButton id="createButton" 
+                                             update=":formularioCategorias"
+                                             oncomplete="PF('dialogoCategoria1').show()"
+                                             icon="fa fa-plus-square" title="Agregar Categoria" />
+
+
+
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <!--<ui:include src="Edit.xhtml"/>-->
+
+
+        </ui:define>
+    </ui:composition>
+
+
+    <script type="text/javascript">
+        //<![CDATA[
+        function logout(xhr, status, args) {
+            setTimeout(function () {
+                window.location = 'login.xhtml';
+            }, 500);
+        }
+    //]]>
+    </script>
+</html>
