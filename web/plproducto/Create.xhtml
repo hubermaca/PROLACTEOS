@@ -9,7 +9,7 @@
 
     <ui:composition> 
 
-        <p:dialog id="dialogoProducto" widgetVar="dialogoProducto" modal="true" resizable="false" appendTo="@(body)" header="Crear productos">
+        <p:dialog id="dialogoProducto" widgetVar="dialogoProducto" modal="true" resizable="false" appendTo="@(body)" header="Agregar productos">
             <h:form id="formularioProductos">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2"  id="Inventario">
@@ -36,9 +36,14 @@
                                     requiredMessage="Campo obligatorio"></p:calendar>
 
                     </p:panelGrid>
-                    <h:commandButton actionListener="#{productoBO.agregarProductos()}"
-                                     image="images/Iconos/guardar.png"></h:commandButton>
+                    <p:commandButton actionListener="#{productoBO.agregarProductos()}"
+                                     update="display,:form:datalist,:growl" 
+                                     oncomplete="handleSubmit(args,'dialogoProducto');"
+                                     icon="fa fa-fw fa-save"  
+                                    ></p:commandButton>
 
+                    
+                   
 
 
                 </h:panelGroup>

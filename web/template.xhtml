@@ -16,14 +16,18 @@
         <p:growl id="growl" life="3000" />
 
         <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="65" header="PROVELACTEOS SYSTEM PITAYO">
+            <p:layoutUnit position="north" size="65" header="PROVELACTEOS SYSTEM PITAYO"  >
                 <h:form id="menuForm">
                     <p:menubar>
                         <p:menuitem value="Inicio" outcome="/index" icon="ui-icon-home"/>
-                        <p:submenu label="Configuración">
-                            <p:menuitem value="Productos" outcome="/plproducto/Listar.xhtml" />
-                            <p:menuitem value="Categorias" outcome="/categorias/Listar.xhtml" />
-
+                        <p:submenu label="Configuración" icon="fa fa-fw fa-cog">
+                            <p:menuitem value="Productos" outcome="/plproducto/Listar.xhtml" icon="fa fa-fw fa-pinterest" />
+                            <p:menuitem value="Categorias" outcome="/categorias/Listar.xhtml"  icon="fa fa-fw fa-indent"/>
+                        </p:submenu>
+                        
+                         <p:submenu label="Gestionar Nominas" icon="fa fa-fw fa-users">
+                            <p:menuitem value="Empleados"  icon="fa fa-fw fa-user" />
+                            <p:menuitem value="prueba2"  icon="fa fa-fw fa-indent"/>
                         </p:submenu>
                     </p:menubar>
                 </h:form>
@@ -34,6 +38,8 @@
             </p:layoutUnit>
 
             <p:layoutUnit position="center">
+                
+                
                 <ui:insert name="body"/>
             </p:layoutUnit>
 

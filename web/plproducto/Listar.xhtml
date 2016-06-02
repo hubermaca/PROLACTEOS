@@ -53,10 +53,10 @@
                                         <h:outputText value="#{item.descripcion}" />
 					</p:column>
 
-					<p:column filterBy="#{item.precio}"
+					<p:column filterBy="#{item.precio}" 
 						filterMatchMode="contains" headerText="proveedor">
 						<f:facet name="header">
-							<h:outputLabel value="Precio" />
+							<p:outputLabel value="Precio"  />
 						</f:facet>
 						<h:outputText value="#{item.precio}" />
 					</p:column>
@@ -64,7 +64,7 @@
                             <p:column filterBy="#{item.fechaVencimiento}"
 						filterMatchMode="contains" headerText="fecha">
 						<f:facet name="header">
-							<h:outputLabel value="fecha2" />
+							<h:outputLabel value="fecha vencimiento" />
 						</f:facet>
                                 <h:outputText value="#{item.fechaVencimiento}" />
 					</p:column>
@@ -75,7 +75,16 @@
                                 <p:commandButton id="createButton" 
                                    update=":formularioProductos"
                                     oncomplete="PF('dialogoProducto').show()"
-                                    icon="fa fa-plus-square" title="Agregar productor" />
+                                    icon="fa fa-fw fa-plus" title="Agregar productor"
+                                    value="Agregar"/>
+                                
+                                
+                                <p:commandButton id="eliminarButton"
+                                                 icon="fa fa-fw fa-remove" 
+                                                 value="Eliminar"></p:commandButton>
+                                   <p:commandButton id="actualizarButton"
+                                                 icon="fa fa-fw fa-edit" 
+                                                 value="Actualizar"></p:commandButton>
                        
 
 
