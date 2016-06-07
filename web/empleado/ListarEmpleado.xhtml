@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:outputStylesheet name="webjars/font-awesome/4.4.0/css/font-awesome.css"/>
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="Lista de empleados"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="form">            
+                <p:growl id="msgs" showDetail="true"/>
+                <p:panel header="Gestionar Empleados" id="panelAdd">
+                    <p:dataTable  id="datalist" value="#{empleadoBO.empleadosList}" var="item"
+                                  selectionMode="single"		
+                                  selection="#{empleadoBO.seleccionarEmpleado}"
+                                  paginator="true"
+                                  rowKey="#{item.identificacion}"
+                                  rows="5"
+                                  rowsPerPageTemplate="10,20,30,40,50"
+                                  >
+
+                        <p:ajax event="rowSelect" listener="#{empleadoBO.onRowSelect}"  update=":form:msgs" />/>
+                        <p:ajax event="rowUnselect" listener="#{empleadoBO.onRowUnselect}" update=":form:msgs" />
+                    
+                        <p:column filterBy="#{item.idEmpleado}" 
+                                  filterMatchMode="contains"  headerText="identificador empleado">
+                            <f:facet name="header">
+                                <h:outputLabel value="ID_empleado" />
+                            </f:facet>
+                            <h:outputText value="#{item.idEmpleado}" />
+                        </p:column>
+                        
+                        <p:column filterBy="#{item.identificacion}" 
+                                  filterMatchMode="contains"  headerText="identificador empleado">
+                            <f:facet name="header">
+                                <h:outputLabel value="Identificación" />
+                            </f:facet>
+                            <h:outputText value="#{item.identificacion}" />
+                        </p:column>
+
+                        <p:column filterBy="#{item.nombres}"
+                                  filterMatchMode="contains" headerText="Nombres Empleado">
+                            <f:facet name="header">
+                                <h:outputLabel value="Nombres" />
+                            </f:facet>
+                            <h:outputText value="#{item.nombres}" />
+                        </p:column>
+
+                        <p:column filterBy="#{item.apellido1}"
+                                  filterMatchMode="contains" headerText="Apellido1 Empleado">
+                            <f:facet name="header">
+                                <h:outputLabel value="Apellido1" />
+                            </f:facet>
+                            <h:outputText value="#{item.apellido1}" />
+                        </p:column>
+
+                        <p:column filterBy="#{item.apellido2}"
+                                  filterMatchMode="contains" headerText="Apellido2 Empleado">
+                            <f:facet name="header">
+                                <h:outputLabel value="Apellido2" />
+                            </f:facet>
+                            <h:outputText value="#{item.apellido2}" />
+                        </p:column>
+
+                        <p:column filterBy="#{item.genero}"
+                                  filterMatchMode="contains" headerText="Apellido1 Empleado">
+                            <f:facet name="header">
+                                <h:outputLabel value="Apellido1" />
+                            </f:facet>
+                            <h:outputText value="#{item.apellido1}" />
+                        </p:column>
+
+                        <p:column filterBy="#{item.genero}"
+                                  filterMatchMode="contains" headerText="Genero Empleado">
+                            <f:facet name="header">
+                                <h:outputLabel value="Genero" />
+                            </f:facet>
+                            <h:outputText value="#{item.genero}" />
+                        </p:column>
+
+                        <p:column filterBy="#{item.fechaNacimiento}"
+                                  filterMatchMode="contains" headerText="Fecha Nacimiento Empleado">
+                            <f:facet name="header">
+                                <h:outputLabel value="Fecha Nacimiento" />
+                            </f:facet>
+                            <h:outputText value="#{item.fechaNacimiento}" />
+                        </p:column>
+
+                        <p:column filterBy="#{item.correo}"
+                                  filterMatchMode="contains" headerText="Correo Empleado">
+                            <f:facet name="header">
+                                <h:outputLabel value="Correo" />
+                            </f:facet>
+                            <h:outputText value="#{item.correo}" />
+                        </p:column>
+
+                        <p:column filterBy="#{item.telefono}"
+                                  filterMatchMode="contains" headerText="Telefono Empleado">
+                            <f:facet name="header">
+                                <h:outputLabel value="Telefono" />
+                            </f:facet>
+                            <h:outputText value="#{item.telefono}" />
+                        </p:column>
+
+                        <f:facet name="footer" >
+
+                            <p:commandButton id="createButton" 
+                                             update=":formularioEmpleados"
+                                             oncomplete="PF('dialogoEmpleado').show()"
+                                             icon="fa fa-fw fa-plus" title="Agregar Empleado"
+                                             value="Agregar"/>
+
+                            <p:commandButton id="eliminarButton"
+                                             icon="fa fa-fw fa-remove" 
+                                             value="Eliminar"></p:commandButton>
+
+
+                            
+                            
+                            <p:commandButton id="editButton"
+                                              update=":formEmpleadoEditar"
+                                             oncomplete="PF('dialogoEmpleadoEditar').show()"
+                                             icon="fa fa-fw fa-edit"
+                                             immediate="#{empleadoBO.cargarEmpleado(item)}"
+                                             value="Actualizar"
+
+
+                                             />
+                            <p:commandButton id="actualizarButton"
+                                             icon="fa fa-fw fa-edit" 
+                                             value="Actualizar"
+                                             immediate="#{empleadoBO.cargarEmpleado(item)}"
+                                             ></p:commandButton>
+
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+
+            <ui:include src="CrearEmpleado.xhtml"/>
+            <ui:include src="EditarEmpleado.xhtml"/>
+            <!--<ui:include src="View.xhtml"/>-->
+
+
+        </ui:define>
+
+
+    </ui:composition>
+    <script type="text/javascript">
+        //<![CDATA[
+        function logout(xhr, status, args) {
+            setTimeout(function () {
+                window.location = 'login.xhtml';
+            }, 500);
+        }
+        //]]>
+    </script>
+
+
+
+
+</html>

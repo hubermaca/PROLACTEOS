@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition> 
+
+        <p:dialog id="dialogoEmpleado" widgetVar="dialogoEmpleado" modal="true" resizable="false" appendTo="@(body)" header="Agregar Empleados">
+            <h:form id="formularioEmpleados">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2"  id="Emplea">
+                       
+                          <p:outputLabel value="Identificación" styleClass="campoRequerido" />
+                          <p:inputText value="#{empleadoBO.plempleado.idEmpleado}"
+                                     id="Incluir_Empleado1" required="true"
+                                     requiredMessage="Campo obligatorio"></p:inputText>
+                        
+                        <p:outputLabel value="Nombres *" styleClass="campoRequerido" />
+                        <p:inputText value="#{empleadoBO.plempleado.nombres}"
+                                     id="Incluir_Empleado2" required="true"
+                                     requiredMessage="Campo obligatorio"></p:inputText>
+                        
+                        <p:outputLabel value="Apellido1 *" styleClass="campoRequerido" />
+                        <p:inputText value="#{empleadoBO.plempleado.apellido1}"
+                                     id="Incluir_Empleado3" required="true"
+                                     requiredMessage="Campo obligatorio"></p:inputText>	
+                        
+                        <p:outputLabel value="Apellido2 *" styleClass="campoRequerido" />
+                        <p:inputText value="#{empleadoBO.plempleado.apellido2}"
+                                     id="Incluir_Empleado4" required="true"
+                                     requiredMessage="Campo obligatorio"></p:inputText>	
+                        
+                        <p:outputLabel value="Género" styleClass="campoRequerido" />
+                        <p:inputText value="#{empleadoBO.plempleado.genero}"
+                                     id="Incluir_Empleado5" required="false"></p:inputText>	
+                        
+                        <p:outputLabel value="Fecha Nacimiento" styleClass="campoRequerido" />
+                        <p:inputText value="#{empleadoBO.plempleado.fechaNacimiento}"
+                                     id="Incluir_Empleado6" required="false"></p:inputText>	
+                        
+                        <p:outputLabel value="Correo" styleClass="campoRequerido" />
+                        <p:inputText value="#{empleadoBO.plempleado.correo}"
+                                     id="Incluir_Empleado7" required="false"></p:inputText>
+                                     
+                        <p:outputLabel value="Teléfono" styleClass="campoRequerido" />
+                        <p:inputText value="#{empleadoBO.plempleado.telefono}"
+                                     id="Incluir_Empleado8" required="false"></p:inputText>	             
+                 </p:panelGrid> 
+                    
+                    
+                    <p:commandButton actionListener="#{empleadoBO.agregarEmpleados()}"
+                                     update="display,:form:datalist,:growl" 
+                                     oncomplete="handleSubmit(args,'dialogoEmpleado');"
+                                     icon="fa fa-fw fa-save"  
+                                     ></p:commandButton>
+
+                </h:panelGroup>
+
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+    
+ 
+</html>

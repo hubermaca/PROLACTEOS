@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition> 
+
+        <p:dialog id="dialogoEmpleadoEditar" widgetVar="dialogoEmpleadoEditar" modal="true" resizable="false" appendTo="@(body)" header="Agregar Empleados">
+            <h:form id="formEmpleadoEditar">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2"  id="Emplea">
+
+                        <p:outputLabel value="Identificación" styleClass="campoRequerido" />
+                        <p:inputText value="#{empleadoBO.codigo}"
+                                     id="Incluir_Empleado1" required="true"
+                                     requiredMessage="Campo obligatorio"></p:inputText>
+
+                        <p:outputLabel value="Nombres *" styleClass="campoRequerido" />
+                        <p:inputText value="#{empleadoBO.nombreTemp}"
+                                     id="Incluir_Empleado2" required="true"
+                                     requiredMessage="Campo obligatorio"></p:inputText>
+
+                    </p:panelGrid> 
+
+                    <h:commandButton actionListener="#{empleadoBO.actualizarEmpleado}"
+
+                                     ></h:commandButton>
+                    update="display,:form:datalist,:growl" 
+                    oncomplete="handleSubmit(args,'dialogoEmpleadoEditar');"
+                    icon="fa fa-fw fa-save"  
+
+                </h:panelGroup>
+
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+
+
+</html>
